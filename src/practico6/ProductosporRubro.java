@@ -133,7 +133,7 @@ public void armarCabecera(){
    jTProductos1.setModel(modelo);
    }
 private void borrarFilas(){
-   int filas=jTProductos1.getRowCount()-1;
+   int filas=modelo.getRowCount()-1;
        for(int f=filas;f>=0;f--){
            modelo.removeRow(f);
        }

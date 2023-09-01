@@ -163,7 +163,7 @@ private void buscarPorRangoDePrecio() {
 }
 
 private void borrarFilas(){
-   int filas=jTProductos.getRowCount()-1;
+   int filas=modelo.getRowCount()-1;
        for(int f=filas;f>=0;f--){
            modelo.removeRow(f);
        }
