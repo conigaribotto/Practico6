@@ -101,7 +101,7 @@ public class BusquedaPorNombre extends javax.swing.JInternalFrame {
         borrarFilas();
         for(Producto prod:DeTodoSA.listaProductos){
            
-            if(prod.getDescripcion().startsWith(jTNombre.getText())){
+            if(prod.getDescripcion().toLowerCase().startsWith(jTNombre.getText().toLowerCase())){
             
             modelo.addRow(new Object[]{
             prod.getCodigo(),
