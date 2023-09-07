@@ -194,8 +194,38 @@ public class GestiondeProductos extends javax.swing.JInternalFrame {
 
     private void jBGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarActionPerformed
         // TODO add your handling code here:
+        try {
+        int codigo = Integer.parseInt(jTCodigo.getText());
+
+        // Verifica si el código ya existe en la lista
+        for (Producto producto : DeTodoSA.listaProductos) {
+            if (producto.getCodigo() == codigo) {
+                JOptionPane.showMessageDialog(this, "El producto con este código ya está registrado.");
+                return; // No agrega el producto si el código ya existe
+            }
+        }
+
+        // Continúa con la creación y agregación del producto si el código es único
+        String descripcion = jTDescripcion.getText();
+        double precio = Double.parseDouble(jTPrecio.getText());
+        int stock = Integer.parseInt(jTStock.getText());
+        Categoria rubro = (Categoria) jCRubro.getSelectedItem();
+        Producto prodNuevo = new Producto(codigo, descripcion, precio, stock, rubro);
+
+        if (descripcion.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "No debe haber campos en blanco");
+            return;
+        }
+
+        DeTodoSA.listaProductos.add(prodNuevo);
+
+        JOptionPane.showMessageDialog(this, "Producto Agregado con éxito");
+
+    } catch (NumberFormatException nf) {
+        JOptionPane.showMessageDialog(this, "Debe ingresar números válidos en código, precio y stock");
+    }
         
-  try{
+  /*try{
             int codigo =Integer.parseInt(jTCodigo.getText());
             String descripcion=jTDescripcion.getText();
             double precio=Double.parseDouble(jTPrecio.getText());
@@ -212,7 +242,7 @@ public class GestiondeProductos extends javax.swing.JInternalFrame {
         
         }catch(NumberFormatException nf){
             JOptionPane.showMessageDialog(this, "Debe ingresar nros en codigo, precio y stock");
-        }
+        }*/
        
                 
         
