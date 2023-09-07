@@ -244,6 +244,37 @@ public class GestiondeProductos extends javax.swing.JInternalFrame {
 
     private void jBEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarActionPerformed
         // TODO add your handling code here:
+         try {
+        int codigo = Integer.parseInt(jTCodigo.getText());
+
+        // Busca el producto en la lista
+        Producto productoAEliminar = null;
+        for (Producto producto : DeTodoSA.listaProductos) {
+            if (producto.getCodigo() == codigo) {
+                productoAEliminar = producto;
+                break;
+            }
+        }
+
+        // Verifica si se encontró el producto
+        if (productoAEliminar != null) {
+            // Elimina el producto de la lista
+            DeTodoSA.listaProductos.remove(productoAEliminar);
+            JOptionPane.showMessageDialog(this, "Producto eliminado con éxito");
+        } else {
+            JOptionPane.showMessageDialog(this, "No se encontró el producto con el código especificado");
+        }
+
+        // Limpia los campos después de eliminar
+        jTCodigo.setText("");
+        jTDescripcion.setText("");
+        jTPrecio.setText("");
+        jTStock.setText("");
+        jCRubro.setSelectedIndex(0);
+
+    } catch (NumberFormatException nf) {
+        JOptionPane.showMessageDialog(this, "Ingrese un código válido para eliminar un producto");
+    }
         
     }//GEN-LAST:event_jBEliminarActionPerformed
 
